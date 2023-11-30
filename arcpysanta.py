@@ -1,4 +1,5 @@
-# description: create XY layer and export to layer file
+# STANDALONE TEXT
+#description: create XY layer and export to layer file
 
 # import modules
 import arcpy
@@ -30,3 +31,9 @@ except:
         # if error occurs print message(s) to screen
     count = arcpy.GetMessageCount()
     print (arcpy.GetMessage(count-1))
+
+
+# PYTHON WINDOW VERSION
+import arcpy
+arcpy.env.workspace = "C:\_GEOM67\SantaTracking\SantaPath"
+arcpy.management.MakeXYEventLayer('CADcities.csv', 'Y', 'X', "TopCities")
