@@ -110,12 +110,10 @@ else:
 decHours = distance / speed 
 decMinutes = (decHours - int(decHours)) * 60
 decSeconds = decMinutes - int(decMinutes)
-print(decHours, decMinutes, decSeconds)
 
 hours = int(decHours)
 minutes = round(decMinutes)
 seconds = round(decSeconds * 60)
-print(hours, minutes, seconds)
 
 print()
 sleep(1)
