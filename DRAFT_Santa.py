@@ -21,7 +21,7 @@
 from openpyxl import load_workbook
 
 #load the entire workbook
-file = "top30CADcities.xlsx"
+file = r"C:\GEOM67\GroupProject\SantaGIT\santa\top30CADcities.xlsx"
 wb = load_workbook(file)
 
 #load worksheet 
