@@ -52,16 +52,11 @@ destLat = lat[ChosenCity-1].value
 destLong = long[ChosenCity-1].value
 print("Your city is located at",destLat, "degrees latitude and", destLong, "degrees longitude")
 
-# #   SETTING LOCATION OF NORTH POLE (ORIGIN)
-# northPole = "Rovaniemi, Finland"
-# northPoleLat = 66.5433
-# northPoleLong = 25.8475
-
 # --------------------------------------------------------------------------------------------------------------------------------
 # #   DISTANCE CALCULATION
 import math
 
-northPole = "North Pole"
+# Set location of North Pole
 northPoleLat = 80.105289
 northPoleLong = -99.554603
 
