@@ -43,9 +43,7 @@ out_lines = "C:\_GEOM67\SantaTracking\SantaPath\SantaPath.gdb\XYcoordlines"
 arcpy.XYToLine_management(input_table, out_lines, "X_S", "Y_S", "X_E", "Y_E","GEODESIC", "Name")      
 
 
-# description: script reads coordinates in csv format and prints list of pairs
-
-import csv
+# description: script reads coordinates in csv format and prints list of pairs with city name for user
 
 print("Jot down your city's accompanying X,Y coordinates! (X_E and Y_E). You will use this to input into our script tool - SantasPathScript - to see his route on the globe!")
 
