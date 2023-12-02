@@ -53,7 +53,7 @@ def draw_globe_stars():
     draw_circle("green", 40, 160, -30) # Australia
 
     # Write "Merry Christmas" text
-    draw_text("Merry Christmas", 20, -60, -200)
+    draw_text("Merry Christmas!! Santa is on his way! :)", 20, -60, -200)
 
     turtle.hideturtle()
     turtle.done()
