@@ -49,7 +49,7 @@ def draw_globe_with_text():
     draw_text("Merry Christmas", 20, -60, -200)
 
     # Draw snowflakes
-    for _ in range(10):
+    for _ in range(20):
         x = randint(-200, 200)
         y = randint(-100, 200)
         draw_snowflake(x, y, 10)
