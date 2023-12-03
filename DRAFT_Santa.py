@@ -85,12 +85,21 @@ while True:
     reindeerSpeeds = {1:300, 2:600, 3:900, 4:1200, 5:1500, 6:1800, 7:2100, 8:2400, 9:2700}
 
     # Get number of reindeer (1-9) from user 
-    #       needs error handling - ONLY numbers 1 through 9 allowed, no letters or sumbols, no <1 or >9
-    reindeerNum = int(input("How many reindeers do you want to pull Santa's sleigh? Enter a number from 1-9: "))
+    try:
+        reindeerNum = int(input("How many reindeers do you want to pull Santa's sleigh? Enter a number from 1-9: "))
+        if reindeerNum <1 or reindeerNum >9:
+            raise ValueError("Invalid input. Please enter a number between 1 and 9.")           # have we learned about raise even ??????????????????
+    except ValueError as error:
+        print("Error:", error)
+        exit(1)
 
     # Wind speeds 
     #       needs error handling - no letters or symbols 
-    windSpeed = int(input("What is the wind speed (km/hr) in your city currently? Just enter the number (e.g. if the wind speed is 50km/hr, enter 50): "))
+    try:
+        windSpeed = int(input("What is the wind speed (km/hr) in your city currently? Just enter the number (e.g. if the wind speed is 50km/hr, enter 50): "))
+    except ValueError:
+        print("Invalid input. Please enter a numeric value for wind speed.")
+
 
     windDirection = input("What direction is the wind in your city blowing from? (South or North): ")
     if windDirection == 'South':
@@ -103,18 +112,34 @@ while True:
     # --------------------------------------------------------------------------------------------------------------------------------
     #   TIME CALCULATION
 
-    decHours = distance / speed 
-    decMinutes = (decHours - int(decHours)) * 60
-    decSeconds = decMinutes - int(decMinutes)
+    # decHours = distance / speed 
+    # decMinutes = (decHours - int(decHours)) * 60
+    # decSeconds = decMinutes - int(decMinutes)
 
-    hours = int(decHours)
-    minutes = round(decMinutes)
-    seconds = round(decSeconds * 60)
+    # hours = int(decHours)
+    # minutes = round(decMinutes)
+    # seconds = round(decSeconds * 60)
+
+    def calculate_time(distance, speed):
+        decHours = distance / speed 
+        decMinutes = (decHours - int(decHours)) * 60
+        decSeconds = decMinutes - int(decMinutes)
+
+        hours = int(decHours)
+        minutes = round(decMinutes)
+        seconds = round(decSeconds * 60)
+
+        return hours, minutes, seconds
 
     print()
     sleep(1)
 
     # --------------------------------------------------------------------------------------------------------------------------------
+    # MAIN - call the functions and print the final message with 
+
+    hours, minutes, seconds = calculate_time(distance, speed)
+    print(hours, minutes, seconds)
+
 
     print("With", reindeerNum, "reindeers travelling at", reindeerSpeeds[reindeerNum], "km/hr and", windSpeed, "km/hr winds coming from the", windDirection, "it will take Santa", hours, "hour(s)", minutes, "minute(s) and", seconds, "secound(s) to get to your city!")
     print()
