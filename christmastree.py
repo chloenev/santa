@@ -1,6 +1,6 @@
 import turtle
 from random import randint
-# 4 tuples
+4 tuples
 position_tree = ((50, 20), (80, 0), (130, -40), (180, -70))
 
 window = turtle.Screen()
