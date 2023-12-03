@@ -17,14 +17,14 @@
 # https://www.movable-type.co.uk/scripts/latlong.html
 
 #   READING CSV FILE
-#import openpyxl module to read Excel file with city lat/long
+# Import openpyxl module to read Excel file with city lat/long
 from openpyxl import load_workbook
 
-#load the entire workbook
+# Load the entire workbook
 file = r"C:\GEOM67\GroupProject\SantaGIT\santa\top30CADcities.xlsx"
 wb = load_workbook(file)
 
-#load worksheet 
+# Load worksheet 
 ws = wb['Top30']
 all_rows = list(ws.rows)
 all_columns = list(ws.columns)
@@ -33,50 +33,66 @@ lat = all_columns[1]
 long = all_columns[2]
 
 # --------------------------------------------------------------------------------------------------------------------------------
+import csv 
+import math
 from time import sleep
 
 while True:
-# print list of cities to choose from
+    
+    # #   HAVE USER INPUT CHOSEN CITY & WRITE COORDINATES TO FILE FOR USE IN ARCGIS PRO
+
+    # Print list of cities from excel sheet for user to choose from
     print("Below is a list of the top 30 most populated cities in Canada. Please choose one to see how long it will take Santa to fly there in his sleigh.")
-    sleep(2)
+    sleep(1.5)
 
     for i, cell in enumerate (city):
         print(i+1,cell.value)
     print()
 
-    # print chosen city and its respective lat/long
-    ChosenCity = int(input("From the above list, what is the number (1-30) of your city of choice? "))
-    print("The city you have chosen is", city[ChosenCity-1].value)
+    # Display chosen city and its respective lat/long
+    try:
+        chosenCity = int(input("From the above list, what is the number (1-30) of your city of choice? "))
+        if chosenCity <1 or chosenCity >30:
+            raise ValueError("Invalid input. Please enter a number between 1 and 30.")
+    except ValueError as error:
+        print("Error:", error)
+        exit(1)
+
+    destCity = city[chosenCity-1].value    
 
     # isolate x (latitude) and y (longitude) from the chosen city row 
-    destLat = lat[ChosenCity-1].value
-    destLong = long[ChosenCity-1].value
-    print("Your city is located at",destLat, "degrees latitude and", destLong, "degrees longitude")
+    destLat = lat[chosenCity-1].value
+    destLong = long[chosenCity-1].value
+
+    # Write coordinates to a .csv file to be used in ArcGIS Pro 
+    # Help from https://www.youtube.com/watch?v=DXzEijPCRc8 in understanding how to write headings and rows to file 
+    with open('cityCoordinates.csv', 'w', newline='') as csvfile:
+        # fieldnames = ['city', 'latitude', 'longitude']
+        row = ('-99.554603', '80.105289', destCity, str(destLat), str(destLong))
+        writer = csv.writer(csvfile)
+        writer.writerow(['X_S', 'Y_S', 'City', 'Latitude', 'Longitude'])
+        writer.writerow(row)
+        csvfile.close()
 
     # --------------------------------------------------------------------------------------------------------------------------------
     # #   DISTANCE CALCULATION
-    import math
 
-    northPole = "North Pole"
-    northPoleLat = 80.105289
-    northPoleLong = -99.554603
+    def calculate_distance(destinationLat, destinationLong):
+        northPoleLat = 80.105289
+        northPoleLong = -99.554603
 
-    # calculate distance between latitudes & longitudes
-    dLat = (destLat - northPoleLat) * math.pi / 180
-    dLong = (destLong- northPoleLong) * math.pi / 180
+        # Calculate distance between latitudes & longitudes 
+        dLat = math.radians(destLat - northPoleLat)
+        dLong = math.radians(destLong - northPoleLong)
 
-    # convert to radians 
-    lat1 = northPoleLat * (math.pi / 180)
-    lat2 = destLat * (math.pi / 180)
+        # Apply Haversine formula for distance (takes into account the radius of earth = 6,371km)
+        # Further explained at https://www.movable-type.co.uk/scripts/latlong.html 
+        a = (math.sin(dLat / 2) ** 2) + math.cos(math.radians(northPoleLat)) * math.cos(math.radians(destLat)) * (math.sin(dLong / 2) **2)
+        rad = 6371
+        c = 2 * math.asin(math.sqrt(a))
+        distance = rad * c
 
-    # apply haversine formula 
-    a = (pow(math.sin(dLat / 2), 2) + pow(math.sin(dLong / 2), 2) * math.cos(lat1) * math.cos(lat2))
-    rad = 6371      # radius of Earth
-    c = 2 * math.asin(math.sqrt(a))
-    distance = rad * c
-    print("The distance between Santa's workshop and your city is", round(distance, 2), "km")
-    print()
-    sleep(1)
+        return round(distance, 2)
 
     # --------------------------------------------------------------------------------------------------------------------------------
     #   SPEED CALCULATION
@@ -88,40 +104,35 @@ while True:
     try:
         reindeerNum = int(input("How many reindeers do you want to pull Santa's sleigh? Enter a number from 1-9: "))
         if reindeerNum <1 or reindeerNum >9:
-            raise ValueError("Invalid input. Please enter a number between 1 and 9.")           # have we learned about raise even ??????????????????
+            raise ValueError("Invalid input. Please enter a number between 1 and 9.")           # Using 'raise' to raise an exception if number not in range (https://www.w3schools.com/python/ref_keyword_raise.asp)
     except ValueError as error:
         print("Error:", error)
         exit(1)
 
-    # Wind speeds 
-    #       needs error handling - no letters or symbols 
+    # Get wind speed from user 
     try:
         windSpeed = int(input("What is the wind speed (km/hr) in your city currently? Just enter the number (e.g. if the wind speed is 50km/hr, enter 50): "))
     except ValueError:
         print("Invalid input. Please enter a numeric value for wind speed.")
+        exit(1)
 
-
+    # Get wind direction from user 
     windDirection = input("What direction is the wind in your city blowing from? (South or North): ")
+    windDirection = windDirection.capitalize()
+
     if windDirection == 'South':
         speed = reindeerSpeeds[reindeerNum] - windSpeed
     elif windDirection == 'North':
         speed = reindeerSpeeds[reindeerNum] + windSpeed
     else:
-        print("invalid direction")
+        print("Invalid direction. Please choose either 'South' or 'North'!")
+        exit(1)
 
     # --------------------------------------------------------------------------------------------------------------------------------
     #   TIME CALCULATION
 
-    # decHours = distance / speed 
-    # decMinutes = (decHours - int(decHours)) * 60
-    # decSeconds = decMinutes - int(decMinutes)
-
-    # hours = int(decHours)
-    # minutes = round(decMinutes)
-    # seconds = round(decSeconds * 60)
-
-    def calculate_time(distance, speed):
-        decHours = distance / speed 
+    def calculate_time(distanceTravelled, speedSleigh):
+        decHours = distanceTravelled / speedSleigh 
         decMinutes = (decHours - int(decHours)) * 60
         decSeconds = decMinutes - int(decMinutes)
 
@@ -132,19 +143,26 @@ while True:
         return hours, minutes, seconds
 
     print()
+
+    # --------------------------------------------------------------------------------------------------------------------------------
+    # MAIN - call the functions and print the final message!  
+
+    distance = calculate_distance(destLat, destLong)
+    hours, minutes, seconds = calculate_time(distance, speed)
+
+
+    print("The city you have chosen is", destCity, ", located at", destLat, "degrees latitude and", destLong, "degrees longitude.")
+    print("You chose", reindeerNum, "reindeers to fly Santa's sleigh - which will travel at", reindeerSpeeds[reindeerNum], "km/hr.")
+    print("And the wind conditions in your city are:", windDirection, "winds travelling at", windSpeed, "km/hr.")
+    print()
+    sleep(1)
+    print("Therefore, it will take Santa and his reindeers", hours, "hour(s)", minutes, "minute(s) and", seconds, "secound(s) to get to your city to deliver presents!")
+    print()
     sleep(1)
 
     # --------------------------------------------------------------------------------------------------------------------------------
-    # MAIN - call the functions and print the final message with 
+    # Ask the user if they would like to run through the program again 
 
-    hours, minutes, seconds = calculate_time(distance, speed)
-    print(hours, minutes, seconds)
-
-
-    print("With", reindeerNum, "reindeers travelling at", reindeerSpeeds[reindeerNum], "km/hr and", windSpeed, "km/hr winds coming from the", windDirection, "it will take Santa", hours, "hour(s)", minutes, "minute(s) and", seconds, "secound(s) to get to your city!")
-    print()
-
-    # --------------------------------------------------------------------------------------------------------------------------------
     answer = input("Would you like to try it again with another city? (Y/N)? ")
     answer = answer.upper()
     if answer == "N":
