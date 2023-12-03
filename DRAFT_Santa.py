@@ -15,6 +15,9 @@
 # with help from example at https://ehmatthes.github.io/pcc_2e/beyond_pcc/extracting_from_excel/#extracting-data-from-specific-cells, 
 # https://www.geeksforgeeks.org/haversine-formula-to-find-distance-between-two-points-on-a-sphere/, 
 # https://www.movable-type.co.uk/scripts/latlong.html
+# https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/xy-to-line.htm
+# https://stackoverflow.com/questions/49859230/arcpy-create-points-with-xy-and-display-them-correctly
+# https://www.exprodat.com/blog/tip-25-using-the-xy-to-line-tool-4/
 
 #   READING CSV FILE
 #import openpyxl module to read Excel file with city lat/long
