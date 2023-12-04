@@ -4,11 +4,14 @@
 # Authors: Andie Herstek and Chloe Nevin 
 # Purpose:
 # Description:
-# Assumptions:
+# Assumptions: 
+# 1. We assume Sabta goes directly from the North Pole to the user's chosen location, 
+# and does not travel between destinations prior to returning to his workshop. 
+# 2. We assume Santa is always travelling South to his destination. 
 # Planned for limitations: 
 # Special cases/known problems:
-# Inputs:
-# Outputs:
+# Inputs: City of choice from list provided (30 cities), number of reindeer (1-9), wind speed (km/h), wind direction (N or S)
+# Outputs: Time (hr/min/sec) it will take for Santa to travel from North Pole to user's city with inputs selected
 # References:
 # Contributions: 
 
