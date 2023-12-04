@@ -1,5 +1,4 @@
-# description: create XY layer and export to layer file
-
+# description: create XY layer and export to layer file to produce top 30 cities on a map 
 # import modules
 import arcpy
 import csv
@@ -8,14 +7,13 @@ from arcpy import env
 # environment settings
 env.workspace = "C:\_GEOM67\SantaTracking\SantaPath"
 
-
 try:
 
     # variable settings
 
     table = "CADcities.csv"
-    x_coords = "Y"
-    y_coords = "X"
+    x_coords = "X"
+    y_coords = "Y"
     out_layer = "cities2_layer"
     saved_layer = "C:\_GEOM67\SantaTracking\SantaPath\santacities.lyr"
 
@@ -33,8 +31,8 @@ except:
     count = arcpy.GetMessageCount()
     print (arcpy.GetMessage(count-1))
 
-# description: plotting a line between Santa's workshop and cities across Canada
-
+# description: plotting a line between Santa's workshop and chosen city's coordinate from python script's generated csv file
+# import modules
 import arcpy
 import csv
 from arcpy import env
@@ -42,11 +40,9 @@ from arcpy import env
 # environment settings
 env.workspace = "C:\_GEOM67\SantaTracking\SantaPath"
 
-# description: plotting a line between Santa's workshop and chosen city's coordinate from python script's generated csv file
-
-# set variables
+# set variables (input = table created from main program, output = new map layer)
 input_table = "C:\_GEOM67\SantaTracking\SantaPath\cityCoordinates.csv"
-out_lines = "C:\_GEOM67\SantaTracking\SantaPath\SantaPath.gdb\XYcoordlines11"
+out_lines = "C:\_GEOM67\SantaTracking\SantaPath\SantaPath.gdb\SantasPathXY"
 
 # run XY to line tool (from Santa's workshop to chosen city)
 arcpy.XYToLine_management(input_table, out_lines, "Longitude", "Latitude", "X_S", "Y_S","GEODESIC", "City")
