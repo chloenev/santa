@@ -2,19 +2,21 @@
 ## PSP Group Project 2023
 ## Section 60, Group 3
 ## Authors: Andie Herstek and Chloe Nevin 
-## Purpose: To allow user to determine how long Santa's trip is (hr/min/sec) from his workshop in the North Pole to their chosen city
+## Purpose: To allow user to determine how long Santa's trip is (hr/min/sec) from his workshop in the North Pole to their chosen city.
 ## Description: This program is designed to allow a user to input variables based on their wind conditions (speed and direction)
 # as well as the desired number of reindeer they wish Santa to be flying with to arrive at their chosen city's destination. This
 # program will then take the user's input variables and calculate the time of Santa's trip as an output message. To keep with the
-# Christmas spirit, the program also outputs a holiday drawing and message.
+# Christmas spirit, the program also outputs a holiday drawing and message. From the city's XY coordinates chosen by user, one can
+# open ArcGIS to input code into the command line to then see Santa's path mapped from his workshop to their city. Within the ArcGIS file, 
+# a script was created to include the user to input known X,Y coordinates if their city did not display on provided list. 
 ## Assumptions: 
 # 1. We assume Santa goes directly from the North Pole to the user's chosen location, 
 # and does not travel between destinations prior to returning to his workshop. 
 # 2. We assume Santa is always travelling South to his destination. 
-## Planned for limitations: 
+## Planned for limitations: ArcGIS script does not calculate Santa's travel time/input variables other than XY, simply displays his route as a line.
 ## Special cases/known problems:
 ## Inputs: City of choice from list provided (30 cities), number of reindeer (1-9), wind speed (km/h), wind direction (N or S)
-## Outputs: Time (hr/min/sec) it will take for Santa to travel from North Pole to user's city with inputs selected
+## Outputs: Time (hr/min/sec) it will take for Santa to travel from North Pole to user's city with inputs selected, turtle module drawing
 ## References: with help from examples at:
 # https://ehmatthes.github.io/pcc_2e/beyond_pcc/extracting_from_excel/#extracting-data-from-specific-cells, 
 # https://www.geeksforgeeks.org/haversine-formula-to-find-distance-between-two-points-on-a-sphere/, 
