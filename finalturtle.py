@@ -1,8 +1,11 @@
 import turtle
+# random is used to generate random integers
 from random import randint
 
 turtle.bgcolor("lightblue")
 
+# defining different aspects of the drawing the turtle module will create
+# drawing the globe
 def draw_circle(color, radius, x, y):
     turtle.penup()
     turtle.goto(x, y - radius)
@@ -12,6 +15,7 @@ def draw_circle(color, radius, x, y):
     turtle.circle(radius)
     turtle.end_fill()
 
+# writing out a christmas message
 def draw_text(message, font_size, x, y):
     turtle.penup()
     turtle.goto(x, y)
@@ -19,6 +23,7 @@ def draw_text(message, font_size, x, y):
     turtle.color("red")
     turtle.write(message, font=("Arial", font_size, "bold"))
 
+# drawing snowflakes of various sizes
 def draw_snowflake(x, y, size):
     turtle.penup()
     turtle.goto(x, y)
@@ -30,7 +35,7 @@ def draw_snowflake(x, y, size):
         turtle.forward(size)
         turtle.backward(size)
         turtle.left(60)
-
+        
 def draw_globe_with_text():
     turtle.speed(10)
 
@@ -46,7 +51,7 @@ def draw_globe_with_text():
     draw_circle("green", 40, 160, -30) 
 
     # Write "Merry Christmas" text
-    draw_text("Merry Christmas", 20, -60, -200)
+    draw_text("Happy Holidays!", 20, -60, -200)
 
     # Draw snowflakes
     for _ in range(20):
@@ -57,5 +62,5 @@ def draw_globe_with_text():
     turtle.hideturtle()
     turtle.done()
 
-# Call the function to draw the globe with text, snowflakes, and sleigh
+# Call the function to create drawing
 draw_globe_with_text()
