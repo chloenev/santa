@@ -1,26 +1,29 @@
-# Calculating Time & Distance for Santa's Trip from North Pole to Your City! 
-# PSP Group Project 2023
-# Section 60, Group 3
-# Authors: Andie Herstek and Chloe Nevin 
-# Purpose:
-# Description:
-# Assumptions: 
-# 1. We assume Sabta goes directly from the North Pole to the user's chosen location, 
+## Calculating Time & Distance for Santa's Trip from North Pole to Your City! 
+## PSP Group Project 2023
+## Section 60, Group 3
+## Authors: Andie Herstek and Chloe Nevin 
+## Purpose: To allow user to determine how long Santa's trip is (hr/min/sec) from his workshop in the North Pole to their chosen city
+## Description: This program is designed to allow a user to input variables based on their wind conditions (speed and direction)
+# as well as the desired number of reindeer they wish Santa to be flying with to arrive at their chosen city's destination. This
+# program will then take the user's input variables and calculate the time of Santa's trip as an output message. To keep with the
+# Christmas spirit, the program also outputs a holiday drawing and message.
+## Assumptions: 
+# 1. We assume Santa goes directly from the North Pole to the user's chosen location, 
 # and does not travel between destinations prior to returning to his workshop. 
 # 2. We assume Santa is always travelling South to his destination. 
-# Planned for limitations: 
-# Special cases/known problems:
-# Inputs: City of choice from list provided (30 cities), number of reindeer (1-9), wind speed (km/h), wind direction (N or S)
-# Outputs: Time (hr/min/sec) it will take for Santa to travel from North Pole to user's city with inputs selected
-# References:
-# Contributions: 
-
-# with help from example at https://ehmatthes.github.io/pcc_2e/beyond_pcc/extracting_from_excel/#extracting-data-from-specific-cells, 
+## Planned for limitations: 
+## Special cases/known problems:
+## Inputs: City of choice from list provided (30 cities), number of reindeer (1-9), wind speed (km/h), wind direction (N or S)
+## Outputs: Time (hr/min/sec) it will take for Santa to travel from North Pole to user's city with inputs selected
+## References: with help from examples at:
+# https://ehmatthes.github.io/pcc_2e/beyond_pcc/extracting_from_excel/#extracting-data-from-specific-cells, 
 # https://www.geeksforgeeks.org/haversine-formula-to-find-distance-between-two-points-on-a-sphere/, 
 # https://www.movable-type.co.uk/scripts/latlong.html
 # https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/xy-to-line.htm
 # https://stackoverflow.com/questions/49859230/arcpy-create-points-with-xy-and-display-them-correctly
+# https://gis.stackexchange.com/questions/88092/calculating-x-and-y-of-line-start-and-line-end-using-arcpy
 # https://www.exprodat.com/blog/tip-25-using-the-xy-to-line-tool-4/
+## Contributions: 
 
 #   READING CSV FILE
 # Import openpyxl module to read Excel file with city lat/long
