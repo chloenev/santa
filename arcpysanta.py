@@ -35,19 +35,18 @@ except:
 
 # description: plotting a line between Santa's workshop and cities across Canada
 
+import arcpy
+import csv
+from arcpy import env
+
+# environment settings
+env.workspace = "C:\_GEOM67\SantaTracking\SantaPath"
+
+# description: plotting a line between Santa's workshop and chosen city's coordinate from python script's generated csv file
+
 # set variables
-input_table = "C:\_GEOM67\SantaTracking\SantaPath\cities.csv"
-out_lines = "C:\_GEOM67\SantaTracking\SantaPath\SantaPath.gdb\XYcoordlines"
+input_table = "C:\_GEOM67\SantaTracking\SantaPath\cityCoordinates.csv"
+out_lines = "C:\_GEOM67\SantaTracking\SantaPath\SantaPath.gdb\XYcoordlines11"
 
-# run XY to line
-arcpy.XYToLine_management(input_table, out_lines, "X_S", "Y_S", "X_E", "Y_E","GEODESIC", "Name")      
-
-
-# description: script reads coordinates in csv format and prints list of pairs with city name for user
-
-print("Jot down your city's accompanying X,Y coordinates! (X_E and Y_E). You will use this to input into our script tool - SantasPathScript - to see his route on the globe!")
-
-with open ("C:\_GEOM67\SantaTracking\SantaPath\cities.csv") as santacities:
-     csvReader = csv.reader(santacities)
-     for row in csvReader:
-          print(row)
+# run XY to line tool (from Santa's workshop to chosen city)
+arcpy.XYToLine_management(input_table, out_lines, "Longitude", "Latitude", "X_S", "Y_S","GEODESIC", "City")
