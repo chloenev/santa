@@ -1,4 +1,8 @@
-# description: create XY layer and export to layer file to produce top 30 cities on a map 
+## Purpose: importing top 30 Canadian cities to provided map
+## Description: create XY layer and export to layer file to produce top 30 cities on a map 
+## Inputs: using csv file, obtaining city's X.Y coordinates 
+## Outputs: creating points as a layer in ArcGIS
+
 # import modules
 import arcpy
 import csv
@@ -30,8 +34,13 @@ except:
         # if error occurs print message(s) to screen
     count = arcpy.GetMessageCount()
     print (arcpy.GetMessage(count-1))
+## -------------------------------------------------------------------------------------- ##
 
-# description: plotting a line between Santa's workshop and chosen city's coordinate from python script's generated csv file
+## Purpose: creation of Santa's travel path generated from user's selected city in main program code
+## Description: plotting a line between Santa's workshop and chosen city's coordinate from python script's generated csv file
+## Inputs: chosen city's coordinates, in csv format
+## Outputs: X,Y line generated from Santa's workshop to user's selected city
+
 # import modules
 import arcpy
 import csv
