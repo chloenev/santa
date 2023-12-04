@@ -18,9 +18,13 @@
 
 ## Planned for limitations: ArcGIS script does not calculate Santa's travel time/input variables other than XY, simply displays his route as a line.
 # The program is designed for to calculate one trip from the North Pole to one city at a time - no stopping, or addding additional cities. 
+<<<<<<< HEAD
 
 ## Special cases/known problems:
 
+=======
+## Special cases/known problems: ArcGIS script tool does not take into account geodetic measurement
+>>>>>>> 86de64ccfe8d75b1d31556388b37adcef5946f42
 ## Inputs: City of choice from list provided (30 cities), number of reindeer (1-9), wind speed (km/h), wind direction (N or S)
 ## Outputs: Time (hr/min/sec) it will take for Santa to travel from North Pole to user's city with inputs selected, turtle module drawing
 
