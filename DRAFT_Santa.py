@@ -1,4 +1,4 @@
-## Calculating Time & Distance for Santa's Trip from North Pole to Your City! 
+## Calculating Time & Distance for Santa's Trip from the North Pole to Your City! 
 ## PSP Group Project 2023
 ## Section 60, Group 3
 ## Authors: Andie Herstek and Chloe Nevin 
@@ -14,6 +14,7 @@
 # and does not travel between destinations prior to returning to his workshop. 
 # 2. We assume Santa is always travelling South to his destination. 
 ## Planned for limitations: ArcGIS script does not calculate Santa's travel time/input variables other than XY, simply displays his route as a line.
+# The program is designed for to calculate one trip from the North Pole to one city at a time - no stopping, or addding additional cities. 
 ## Special cases/known problems:
 ## Inputs: City of choice from list provided (30 cities), number of reindeer (1-9), wind speed (km/h), wind direction (N or S)
 ## Outputs: Time (hr/min/sec) it will take for Santa to travel from North Pole to user's city with inputs selected, turtle module drawing
@@ -65,7 +66,7 @@ while True:
     try:
         chosenCity = int(input("From the above list, what is the number (1-30) of your city of choice? "))
         if chosenCity <1 or chosenCity >30:
-            raise ValueError("Invalid input. Please enter a number between 1 and 30.")
+            raise ValueError("Invalid input. Please enter a number between 1 and 30.")            # Using 'raise' to raise an exception if number not in range (https://www.w3schools.com/python/ref_keyword_raise.asp
     except ValueError as error:
         print("Error:", error)
         exit(1)
@@ -116,7 +117,7 @@ while True:
     try:
         reindeerNum = int(input("How many reindeers do you want to pull Santa's sleigh? Enter a number from 1-9: "))
         if reindeerNum <1 or reindeerNum >9:
-            raise ValueError("Invalid input. Please enter a number between 1 and 9.")           # Using 'raise' to raise an exception if number not in range (https://www.w3schools.com/python/ref_keyword_raise.asp)
+            raise ValueError("Invalid input. Please enter a number between 1 and 9.")          
     except ValueError as error:
         print("Error:", error)
         exit(1)
