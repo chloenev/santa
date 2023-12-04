@@ -25,6 +25,7 @@
 # https://stackoverflow.com/questions/49859230/arcpy-create-points-with-xy-and-display-them-correctly
 # https://gis.stackexchange.com/questions/88092/calculating-x-and-y-of-line-start-and-line-end-using-arcpy
 # https://www.exprodat.com/blog/tip-25-using-the-xy-to-line-tool-4/
+# https://pro.arcgis.com/en/pro-app/latest/arcpy/geoprocessing_and_python/setting-script-tool-parameters.htm
 ## Contributions: 
 
 #   READING CSV FILE
