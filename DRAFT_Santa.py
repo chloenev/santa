@@ -63,10 +63,11 @@ while True:
     print()
 
     # Display chosen city and its respective lat/long
+    # Using 'raise' to raise an exception if number not in range (https://www.w3schools.com/python/ref_keyword_raise.asp
     try:
         chosenCity = int(input("From the above list, what is the number (1-30) of your city of choice? "))
         if chosenCity <1 or chosenCity >30:
-            raise ValueError("Invalid input. Please enter a number between 1 and 30.")            # Using 'raise' to raise an exception if number not in range (https://www.w3schools.com/python/ref_keyword_raise.asp
+            raise ValueError("Invalid input. Please enter a number between 1 and 30.")
     except ValueError as error:
         print("Error:", error)
         exit(1)
