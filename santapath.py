@@ -42,7 +42,7 @@
 from openpyxl import load_workbook
 
 # Load the entire workbook
-file = r"C:\GEOM67\GroupProject\SantaGIT\santa\top30CADcities.xlsx"
+file = "santa/top30CADcities.xlsx"
 wb = load_workbook(file)
 
 # Load worksheet 
