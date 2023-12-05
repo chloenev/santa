@@ -8,7 +8,11 @@ import arcpy
 import csv
 from arcpy import env
 
-# environment settings
+# import operating system and working directory
+import os 
+cwd = os.getcwd() 
+
+# environment settings - to allow user to set their file path
 env.workspace = "C:\_GEOM67\SantaTracking\SantaPath"
 
 try:
@@ -46,7 +50,11 @@ import arcpy
 import csv
 from arcpy import env
 
-# environment settings
+# import operating system and working directory
+import os 
+cwd = os.getcwd() 
+
+# environment settings - to allow user to set their file path
 env.workspace = "C:\_GEOM67\SantaTracking\SantaPath"
 
 # set variables (input = table created from main program, output = new map layer)
